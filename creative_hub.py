@@ -4,6 +4,21 @@ import random
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="Riya's Ultimate Creative Space", layout="wide")
 
+# ---------------- BACKGROUND IMAGE ----------------
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://i.imgur.com/OjQxgD8.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # ---------------- FLOATING HEARTS + WELCOME ----------------
 st.markdown("""
 <style>
@@ -51,13 +66,11 @@ elif menu == "Music 🎵":
     st.subheader("🎧 Music Zone 💜")
     st.write("Select an artist and enjoy your favorite songs!")
 
-    # Expanded music library (~20 songs each artist)
     music_library = {
         "BTS": {
             "Dynamite": "https://www.youtube.com/watch?v=gdZLi9oWNZg",
             "Butter": "https://www.youtube.com/watch?v=WMweEpGlu_U",
             "Permission to Dance": "https://www.youtube.com/watch?v=CuklIb9d3fI",
-            "Life Goes On": "https://www.youtube.com/watch?v=Fg7tT1k2F9Q",
             "Boy With Luv": "https://www.youtube.com/watch?v=XsX3ATc3FbA",
             "Fake Love": "https://www.youtube.com/watch?v=7C2z4GqqS5E",
             "Spring Day": "https://www.youtube.com/watch?v=xEeFrLSkMm8",
@@ -66,36 +79,37 @@ elif menu == "Music 🎵":
             "Blood Sweat & Tears": "https://www.youtube.com/watch?v=hmE9f-TEutc",
             "MIC Drop": "https://www.youtube.com/watch?v=kTlv5_Bs8aw",
             "Black Swan": "https://www.youtube.com/watch?v=gmwea9gXdx8",
-            "Butterfly": "https://www.youtube.com/watch?v=co6WMzDOh1o",
+            "Life Goes On": "https://www.youtube.com/watch?v=Fg7tT1k2F9Q",
             "Not Today": "https://www.youtube.com/watch?v=9DwzBICPhdM",
-            "Make It Right": "https://www.youtube.com/watch?v=m2XipzWB9r0",
-            "Stay Gold": "https://www.youtube.com/watch?v=5kENt_J8Jkg",
+            "Butterfly": "https://www.youtube.com/watch?v=co6WMzDOh1o",
             "Film Out": "https://www.youtube.com/watch?v=WjAf0IVGHtA",
-            "Anpanman": "https://www.youtube.com/watch?v=j8c1zjVYXl4",
             "Go Go": "https://www.youtube.com/watch?v=fsX4c-CMBmg",
-            "Run BTS": "https://www.youtube.com/watch?v=2VZrkfkgN4o"
+            "Run BTS": "https://www.youtube.com/watch?v=2VZrkfkgN4o",
+            "Stay Gold": "https://www.youtube.com/watch?v=5kENt_J8Jkg",
+            "Permission to Dance (Dance Ver.)": "https://www.youtube.com/watch?v=R9tZp6hYIuo",
+            "Dynamite (Dance Ver.)": "https://www.youtube.com/watch?v=9R8aWl_kG1o"
         },
         "Blackpink": {
             "How You Like That": "https://www.youtube.com/watch?v=ioNng23DkIM",
             "Kill This Love": "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
             "DDU-DU DDU-DU": "https://www.youtube.com/watch?v=IHNzOHi8sJs",
             "BOOMBAYAH": "https://www.youtube.com/watch?v=ygJ_9y4x5kQ",
-            "Playing With Fire": "https://www.youtube.com/watch?v=9pdj4iJD08s",
-            "Whistle": "https://www.youtube.com/watch?v=dISNgvVpWlo",
-            "Forever Young": "https://www.youtube.com/watch?v=9E8h5HLF3wY",
-            "Lovesick Girls": "https://www.youtube.com/watch?v=dyRsYk0LyA8",
-            "As If It's Your Last": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
             "Pretty Savage": "https://www.youtube.com/watch?v=3P2v4xQ1q8o",
-            "Bet You Wanna": "https://www.youtube.com/watch?v=K4QVIx2sPog",
+            "Lovesick Girls": "https://www.youtube.com/watch?v=dyRsYk0LyA8",
+            "Whistle": "https://www.youtube.com/watch?v=dISNgvVpWlo",
+            "Playing With Fire": "https://www.youtube.com/watch?v=9pdj4iJD08s",
+            "As If It's Your Last": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
             "Ice Cream": "https://www.youtube.com/watch?v=vRXZj0DzXIA",
-            "Typa Girl": "https://www.youtube.com/watch?v=6xopuvcY2GQ",
             "Pink Venom": "https://www.youtube.com/watch?v=Q0CbN8sfihY",
             "Shut Down": "https://www.youtube.com/watch?v=w2hH9YZJljU",
-            "Ready For Love": "https://www.youtube.com/watch?v=qltR2imF2IY",
-            "Lalisa": "https://www.youtube.com/watch?v=awkkyBH2zEo",
-            "Money": "https://www.youtube.com/watch?v=G1GrbK6wbxg",
+            "Bet You Wanna": "https://www.youtube.com/watch?v=K4QVIx2sPog",
             "Gone": "https://www.youtube.com/watch?v=c4YtvmD0sUU",
-            "The Girls": "https://www.youtube.com/watch?v=uGzFZr5y0XE"
+            "The Girls": "https://www.youtube.com/watch?v=uGzFZr5y0XE",
+            "Typa Girl": "https://www.youtube.com/watch?v=6xopuvcY2GQ",
+            "Lalisa": "https://www.youtube.com/watch?v=awkkyBH2zEo",
+            "Ready For Love": "https://www.youtube.com/watch?v=qltR2imF2IY",
+            "Forever Young": "https://www.youtube.com/watch?v=9E8h5HLF3wY",
+            "Love To Hate Me": "https://www.youtube.com/watch?v=Jx3d0lZ7L0o"
         },
         "Alan Walker": {
             "Faded": "https://www.youtube.com/watch?v=60ItHLz5WEA",
@@ -108,16 +122,15 @@ elif menu == "Music 🎵":
             "Tired": "https://www.youtube.com/watch?v=Hz8uF5nJ2ZA",
             "Different World": "https://www.youtube.com/watch?v=ltrMfT4Qz5k",
             "Ignite": "https://www.youtube.com/watch?v=7y_9F_3En7g",
-            "The Spectre": "https://www.youtube.com/watch?v=AOeY-nDp7hI",
             "Heading Home": "https://www.youtube.com/watch?v=dvI8C7f_Zrg",
             "Lost Control": "https://www.youtube.com/watch?v=PO3S9DhGbYg",
+            "Dreamer": "https://www.youtube.com/watch?v=RJK7M6IdOqc",
+            "Unity": "https://www.youtube.com/watch?v=3lgM8u0qQ2M",
+            "Paradise": "https://www.youtube.com/watch?v=5VX3lAk3l4k",
             "Routine": "https://www.youtube.com/watch?v=0Fbd2Xn4qxM",
             "End of Time": "https://www.youtube.com/watch?v=U0uR8oFQt3U",
-            "Faded (Restrung)": "https://www.youtube.com/watch?v=LJ4BRb7btrE",
-            "Unity": "https://www.youtube.com/watch?v=3lgM8u0qQ2M",
-            "Dreamer": "https://www.youtube.com/watch?v=RJK7M6IdOqc",
             "Lost Control (feat. Sorana)": "https://www.youtube.com/watch?v=_2gn4Hl62d4",
-            "Paradise": "https://www.youtube.com/watch?v=5VX3lAk3l4k"
+            "Different World (Feat. K-391)": "https://www.youtube.com/watch?v=example1"
         }
     }
 
@@ -132,45 +145,52 @@ elif menu == "K-Drama 🎬":
     st.subheader("🍿 K-Drama / Films 💜")
     st.write("Select a drama or film to watch episodes:")
 
-    # 10+ dramas, 1 episode each
     dramas = {
-        "Crash Landing on You": {"Episode 1": "https://www.youtube.com/watch?v=eXMjTXL2Vks"},
-        "True Beauty": {"Episode 1": "https://www.youtube.com/watch?v=RHe2P8lG6bI"},
-        "All of Us Are Dead": {"Episode 1": "https://www.youtube.com/watch?v=IN5TD4VRcSM"},
-        "Itaewon Class": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "Vincenzo": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "Love Alarm": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "Goblin": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "My Love From the Star": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "Extraordinary You": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
-        "Nevertheless": {"Episode 1": "https://www.youtube.com/watch?v=example1"}
+        "Crash Landing on You": {
+            "Episode 1": "https://www.youtube.com/watch?v=eXMjTXL2Vks",
+            "Episode 2": "https://www.youtube.com/watch?v=example2",
+            "Episode 3": "https://www.youtube.com/watch?v=example3",
+            "Episode 4": "https://www.youtube.com/watch?v=example4"
+        },
+        "True Beauty": {
+            "Episode 1": "https://www.youtube.com/watch?v=RHe2P8lG6bI",
+            "Episode 2": "https://www.youtube.com/watch?v=example2",
+            "Episode 3": "https://www.youtube.com/watch?v=example3",
+            "Episode 4": "https://www.youtube.com/watch?v=example4"
+        },
+        "Vincenzo": {
+            "Episode 1": "https://www.youtube.com/watch?v=example1",
+            "Episode 2": "https://www.youtube.com/watch?v=example2",
+            "Episode 3": "https://www.youtube.com/watch?v=example3",
+            "Episode 4": "https://www.youtube.com/watch?v=example4"
+        }
+        # add more dramas/films as desired
     }
 
     drama_choice = st.selectbox("Pick a drama or film", list(dramas.keys()))
     if drama_choice:
-        st.write(f"💜 Episode for {drama_choice}:")
+        st.write(f"💜 Episodes for {drama_choice}:")
         for ep_name, ep_link in dramas[drama_choice].items():
             st.markdown(f"[{ep_name}]({ep_link})")
 
 # ---------------- BTS UPDATES ----------------
 elif menu == "BTS Updates 📰":
     st.subheader("📰 Trending BTS Updates 💜")
-
     updates = [
         {
             "text": "BTS is trending worldwide with their latest single 'Yet to Come'!",
             "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/BTS_-_Yet_to_Come.png"
         },
         {
-            "text": "Upcoming BTS tour dates announced for Asia and Europe.",
+            "text": "BTS announces new tour dates!",
             "image": "https://upload.wikimedia.org/wikipedia/commons/6/65/BTS_concert.jpg"
         },
         {
-            "text": "BTS just hit 100M views on 'Butter' YouTube video!",
+            "text": "BTS hits record views on Butter!",
             "image": "https://upload.wikimedia.org/wikipedia/en/b/b3/BTS_-_Butter.png"
         },
         {
-            "text": "RM, Jin, Suga, J-Hope, Jimin, V, Jungkook continue making global headlines!",
+            "text": "RM, Jin, Suga, J‑Hope, Jimin, V, Jungkook trending worldwide!",
             "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/BTS_2021.png"
         }
     ]
