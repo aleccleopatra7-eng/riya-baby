@@ -2,7 +2,7 @@ import streamlit as st
 import random
 
 # ---------------- PAGE CONFIG ----------------
-st.set_page_config(page_title="Riya's Creative Space", layout="wide")
+st.set_page_config(page_title="Riya's Ultimate Creative Space", layout="wide")
 
 # ---------------- FLOATING HEARTS + WELCOME ----------------
 st.markdown("""
@@ -26,12 +26,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align:center; color:#d8b4ff;'>Welcome, Riya Smiley! 💜</h2>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center; color:#ffffff;'>May our friendship last forever 💖</h3>", unsafe_allow_html=True)
 
 # ---------------- SIDEBAR MENU ----------------
 menu = st.sidebar.radio("✨ Explore", [
     "Home",
     "Music 🎵",
     "K-Drama 🎬",
+    "BTS Updates 📰",
     "Message 💌"
 ])
 
@@ -46,35 +48,69 @@ if menu == "Home":
 
 # ---------------- MUSIC ----------------
 elif menu == "Music 🎵":
-    st.subheader("🎧 BTS Music Zone 💜")
-    st.write("Enjoy some BTS music!")
+    st.subheader("🎧 Music Zone 💜")
+    st.write("Select an artist and enjoy your favorite songs!")
 
-    # Example: Dynamite YouTube embed
-    st.video("https://www.youtube.com/watch?v=gdZLi9oWNZg")
+    music_library = {
+        "BTS": {
+            "Dynamite": "https://www.youtube.com/watch?v=gdZLi9oWNZg",
+            "Butter": "https://www.youtube.com/watch?v=WMweEpGlu_U",
+            "Permission to Dance": "https://www.youtube.com/watch?v=CuklIb9d3fI"
+        },
+        "Blackpink": {
+            "How You Like That": "https://www.youtube.com/watch?v=ioNng23DkIM",
+            "Kill This Love": "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
+            "DDU-DU DDU-DU": "https://www.youtube.com/watch?v=IHNzOHi8sJs"
+        },
+        "Alan Walker": {
+            "Faded": "https://www.youtube.com/watch?v=60ItHLz5WEA",
+            "Alone": "https://www.youtube.com/watch?v=1-xGerv5FOk",
+            "Spectre": "https://www.youtube.com/watch?v=AOeY-nDp7hI"
+        }
+    }
 
-    # Optional: let her add other songs
-    song = st.text_input("Paste another YouTube song link if you want:")
-    if song:
-        st.video(song)
+    artist = st.selectbox("Pick an artist", list(music_library.keys()))
+    if artist:
+        st.write(f"💜 Songs by {artist}:")
+        for song, link in music_library[artist].items():
+            st.markdown(f"[{song}]({link})")
 
 # ---------------- K-DRAMA ----------------
 elif menu == "K-Drama 🎬":
-    st.subheader("🍿 K-Drama Lounge 💜")
-    st.write("Click a drama to watch its trailer or clip:")
+    st.subheader("🍿 K-Drama / Films 💜")
+    st.write("Select a drama or film to watch episodes:")
 
-    drama_choice = st.selectbox(
-        "Select a drama",
-        ["Crash Landing on You", "True Beauty", "All of Us Are Dead"]
-    )
+    # Expanded drama/film library – 1 episode per drama
+    dramas = {
+        "Crash Landing on You": {"Episode 1": "https://www.youtube.com/watch?v=eXMjTXL2Vks"},
+        "True Beauty": {"Episode 1": "https://www.youtube.com/watch?v=RHe2P8lG6bI"},
+        "All of Us Are Dead": {"Episode 1": "https://www.youtube.com/watch?v=IN5TD4VRcSM"},
+        "Itaewon Class": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "Vincenzo": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "Love Alarm": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "Goblin": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "My Love From the Star": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "Extraordinary You": {"Episode 1": "https://www.youtube.com/watch?v=example1"},
+        "Nevertheless": {"Episode 1": "https://www.youtube.com/watch?v=example1"}
+    }
 
-    if drama_choice == "Crash Landing on You":
-        st.video("https://www.youtube.com/watch?v=eXMjTXL2Vks")  # Trailer
-    elif drama_choice == "True Beauty":
-        st.video("https://www.youtube.com/watch?v=RHe2P8lG6bI")  # Trailer
-    elif drama_choice == "All of Us Are Dead":
-        st.video("https://www.youtube.com/watch?v=IN5TD4VRcSM")  # Trailer
+    drama_choice = st.selectbox("Pick a drama or film", list(dramas.keys()))
+    if drama_choice:
+        st.write(f"💜 Episode for {drama_choice}:")
+        for ep_name, ep_link in dramas[drama_choice].items():
+            st.markdown(f"[{ep_name}]({ep_link})")
 
-    st.write("💜 You can watch full episodes on Netflix or Viki!")
+# ---------------- BTS UPDATES ----------------
+elif menu == "BTS Updates 📰":
+    st.subheader("📰 Trending BTS Updates 💜")
+    updates = [
+        "BTS is trending worldwide with their latest single 'Yet to Come'!",
+        "Upcoming BTS tour dates announced for Asia and Europe.",
+        "BTS just hit 100M views on 'Butter' YouTube video!",
+        "RM, Jin, Suga, J-Hope, Jimin, V, Jungkook continue making global headlines!"
+    ]
+    for update in updates:
+        st.write(f"💜 {update}")
 
 # ---------------- MESSAGE ----------------
 elif menu == "Message 💌":
@@ -83,7 +119,8 @@ elif menu == "Message 💌":
         "You make everything brighter 💜",
         "Keep smiling 😊",
         "This space is yours ✨",
-        "You are special and appreciated 🖤"
+        "You are special and appreciated 🖤",
+        "May our friendship last forever 💖"
     ]
     st.write(random.choice(messages))
 
