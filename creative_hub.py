@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 import random
+from io import BytesIO
+from PIL import Image, ImageDraw, ImageFont
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="Riya's Ultimate Creative Hub", layout="wide")
@@ -200,7 +202,13 @@ elif menu == "Story World ✍️":
         if story_title.strip() == "" or story_text.strip() == "":
             st.warning("Please enter both a title and story text!")
         else:
-            with open(os.path.join(story_folder, f"{story_title}.txt"), "w", encoding="utf-8") as f:
+            base_path = os.path.join(story_folder, story_title)
+            file_path = base_path + ".txt"
+            counter = 1
+            while os.path.exists(file_path):
+                file_path = f"{base_path}_{counter}.txt"
+                counter += 1
+            with open(file_path, "w", encoding="utf-8") as f:
                 f.write(story_text)
             st.success(f"Story '{story_title}' saved successfully! 💜")
 
@@ -228,5 +236,31 @@ elif menu == "Story World ✍️":
             st.write(content)
     else:
         st.info("No stories saved yet. Go write one! ✨")
+
+    # ---------------- COMIC GENERATOR ----------------
+    st.subheader("🎨 Turn Your Story Into a Comic")
+
+    if story_text.strip() != "":
+        def generate_comic(story):
+            lines = story.split(".")
+            panels = []
+            for i, line in enumerate(lines):
+                if line.strip():
+                    # Add random emoji per panel for fun
+                    panel_emoji = random.choice(["💜","✨","🖤","💖","🌸","🎉"])
+                    panels.append(f"Panel {i+1}: {line.strip()} {panel_emoji}")
+            return panels
+
+        if st.button("✨ Generate Comic Panels"):
+            comic_panels = generate_comic(story_text)
+            st.markdown("### 🖼️ Your Comic Panels:")
+            for panel in comic_panels:
+                st.info(panel)
+            st.balloons()
+
+        st.markdown("### 🎭 Optional: Make visuals later if you want:")
+        st.markdown("This is now fully free inside the app — no paid site needed!")
+    else:
+        st.info("Write a story first to turn it into a comic 💜")
 
 st.markdown("</div>", unsafe_allow_html=True)
