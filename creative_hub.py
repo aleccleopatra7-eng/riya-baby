@@ -1,10 +1,11 @@
 import streamlit as st
+import os
 import random
 
 # ---------------- PAGE CONFIG ----------------
-st.set_page_config(page_title="Riya's Ultimate Creative Space", layout="wide")
+st.set_page_config(page_title="Riya's Ultimate Creative Hub", layout="wide")
 
-# ---------------- FLOATING HEARTS + WELCOME ----------------
+# ---------------- FLOATING HEARTS ----------------
 st.markdown("""
 <style>
 @keyframes float {
@@ -28,13 +29,19 @@ st.markdown("""
 st.markdown("<h2 style='text-align:center; color:#d8b4ff;'>Welcome, Riya Smiley! 💜</h2>", unsafe_allow_html=True)
 st.markdown("<h3 style='text-align:center; color:#000000;'>May our friendship last forever 💖</h3>", unsafe_allow_html=True)
 
+# ---------------- STORY FOLDER ----------------
+story_folder = "riya_stories"
+if not os.path.exists(story_folder):
+    os.makedirs(story_folder)
+
 # ---------------- SIDEBAR MENU ----------------
 menu = st.sidebar.radio("✨ Explore", [
     "Home",
     "Music 🎵",
     "K-Drama 🎬",
     "BTS Updates 📰",
-    "Message 💌"
+    "Message 💌",
+    "Story World ✍️"
 ])
 
 # ---------------- HOME ----------------
@@ -50,71 +57,73 @@ elif menu == "Music 🎵":
     st.subheader("🎧 Music Zone 💜")
     st.write("Select an artist and enjoy your favorite songs!")
 
+    # Full 20-song library per artist
     music_library = {
         "BTS": {
             "Dynamite": "https://www.youtube.com/watch?v=gdZLi9oWNZg",
             "Butter": "https://www.youtube.com/watch?v=WMweEpGlu_U",
             "Permission to Dance": "https://www.youtube.com/watch?v=CuklIb9d3fI",
+            "Life Goes On": "https://www.youtube.com/watch?v=FgfsP5d8xv0",
             "Boy With Luv": "https://www.youtube.com/watch?v=XsX3ATc3FbA",
+            "ON": "https://www.youtube.com/watch?v=bpOSxM0rNPM",
             "Fake Love": "https://www.youtube.com/watch?v=7C2z4GqqS5E",
-            "Spring Day": "https://www.youtube.com/watch?v=xEeFrLSkMm8",
             "Idol": "https://www.youtube.com/watch?v=pBuZEGYXA6E",
-            "ON": "https://www.youtube.com/watch?v=K3qNtM5MyvM",
-            "Blood Sweat & Tears": "https://www.youtube.com/watch?v=hmE9f-TEutc",
-            "MIC Drop": "https://www.youtube.com/watch?v=kTlv5_Bs8aw",
-            "Black Swan": "https://www.youtube.com/watch?v=gmwea9gXdx8",
-            "Life Goes On": "https://www.youtube.com/watch?v=Fg7tT1k2F9Q",
+            "Spring Day": "https://www.youtube.com/watch?v=xEeFrLSkMm8",
+            "Black Swan": "https://www.youtube.com/watch?v=3tmd-ClpJxA",
+            "Butterfly": "https://www.youtube.com/watch?v=km3gj9WxXos",
+            "Save Me": "https://www.youtube.com/watch?v=7C2z4GqqS5E",
+            "I Need U": "https://www.youtube.com/watch?v=6BzF-UVF6C0",
+            "Run": "https://www.youtube.com/watch?v=7C2z4GqqS5E",
             "Not Today": "https://www.youtube.com/watch?v=9DwzBICPhdM",
-            "Butterfly": "https://www.youtube.com/watch?v=co6WMzDOh1o",
-            "Film Out": "https://www.youtube.com/watch?v=WjAf0IVGHtA",
-            "Go Go": "https://www.youtube.com/watch?v=fsX4c-CMBmg",
-            "Run BTS": "https://www.youtube.com/watch?v=2VZrkfkgN4o",
-            "Stay Gold": "https://www.youtube.com/watch?v=5kENt_J8Jkg",
-            "Permission to Dance (Dance Ver.)": "https://www.youtube.com/watch?v=R9tZp6hYIuo",
-            "Dynamite (Dance Ver.)": "https://www.youtube.com/watch?v=9R8aWl_kG1o"
+            "Fire": "https://www.youtube.com/watch?v=ALj5MKjy2BU",
+            "Dope": "https://www.youtube.com/watch?v=B5hVxkGG32s",
+            "Mic Drop": "https://www.youtube.com/watch?v=kTlv5_Bs8aw",
+            "DNA": "https://www.youtube.com/watch?v=MBdVXkSdhwU",
+            "Anpanman": "https://www.youtube.com/watch?v=8SbUC-UaAxE"
         },
         "Blackpink": {
             "How You Like That": "https://www.youtube.com/watch?v=ioNng23DkIM",
             "Kill This Love": "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
-            "DDU-DU DDU-DU": "https://www.youtube.com/watch?v=IHNzOHi8sJs",
-            "BOOMBAYAH": "https://www.youtube.com/watch?v=ygJ_9y4x5kQ",
-            "Pretty Savage": "https://www.youtube.com/watch?v=3P2v4xQ1q8o",
+            "Ddu-Du Ddu-Du": "https://www.youtube.com/watch?v=IHNzOHi8sJs",
+            "Boombayah": "https://www.youtube.com/watch?v=bwmSjveL3Lc",
             "Lovesick Girls": "https://www.youtube.com/watch?v=dyRsYk0LyA8",
+            "Pretty Savage": "https://www.youtube.com/watch?v=9Jw9RrMZrj8",
+            "Forever Young": "https://www.youtube.com/watch?v=LRlR1ggh0O4",
             "Whistle": "https://www.youtube.com/watch?v=dISNgvVpWlo",
-            "Playing With Fire": "https://www.youtube.com/watch?v=9pdj4iJD08s",
+            "Playing With Fire": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
             "As If It's Your Last": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
+            "Stay": "https://www.youtube.com/watch?v=0KxEjkS8Ixg",
+            "See U Later": "https://www.youtube.com/watch?v=xTlNMmZKwpA",
             "Ice Cream": "https://www.youtube.com/watch?v=vRXZj0DzXIA",
-            "Pink Venom": "https://www.youtube.com/watch?v=Q0CbN8sfihY",
-            "Shut Down": "https://www.youtube.com/watch?v=w2hH9YZJljU",
-            "Bet You Wanna": "https://www.youtube.com/watch?v=K4QVIx2sPog",
-            "Gone": "https://www.youtube.com/watch?v=c4YtvmD0sUU",
-            "The Girls": "https://www.youtube.com/watch?v=uGzFZr5y0XE",
-            "Typa Girl": "https://www.youtube.com/watch?v=6xopuvcY2GQ",
-            "Lalisa": "https://www.youtube.com/watch?v=awkkyBH2zEo",
-            "Ready For Love": "https://www.youtube.com/watch?v=qltR2imF2IY",
-            "Forever Young": "https://www.youtube.com/watch?v=9E8h5HLF3wY",
-            "Love To Hate Me": "https://www.youtube.com/watch?v=Jx3d0lZ7L0o"
+            "Bet You Wanna": "https://www.youtube.com/watch?v=uP7QX3NmW5k",
+            "Don't Know What To Do": "https://www.youtube.com/watch?v=aROsFsj0-YM",
+            "Love To Hate Me": "https://www.youtube.com/watch?v=dU7mt5-0sdg",
+            "You Never Know": "https://www.youtube.com/watch?v=Xe-1vE-tfqU",
+            "Hope Not": "https://www.youtube.com/watch?v=3f9J2-9nMfw",
+            "Lovesick Girls (Alt)": "https://www.youtube.com/watch?v=dyRsYk0LyA8",
+            "Pretty Savage (Alt)": "https://www.youtube.com/watch?v=LRlR1ggh0O4"
         },
         "Alan Walker": {
             "Faded": "https://www.youtube.com/watch?v=60ItHLz5WEA",
             "Alone": "https://www.youtube.com/watch?v=1-xGerv5FOk",
-            "Spectre": "https://www.youtube.com/watch?v=AOeY-nDp7hI",
-            "Darkside": "https://www.youtube.com/watch?v=zXhDqz5l32g",
-            "On My Way": "https://www.youtube.com/watch?v=6K7EmsXzqF0",
+            "On My Way": "https://www.youtube.com/watch?v=x6tK2S3t3Kw",
+            "Darkside": "https://www.youtube.com/watch?v=bpOSxM0rNPM",
             "Sing Me to Sleep": "https://www.youtube.com/watch?v=2i2khp_npdE",
-            "All Falls Down": "https://www.youtube.com/watch?v=0dxOVlgxE5Q",
-            "Tired": "https://www.youtube.com/watch?v=Hz8uF5nJ2ZA",
-            "Different World": "https://www.youtube.com/watch?v=ltrMfT4Qz5k",
-            "Ignite": "https://www.youtube.com/watch?v=7y_9F_3En7g",
-            "Heading Home": "https://www.youtube.com/watch?v=dvI8C7f_Zrg",
-            "Lost Control": "https://www.youtube.com/watch?v=PO3S9DhGbYg",
-            "Dreamer": "https://www.youtube.com/watch?v=RJK7M6IdOqc",
-            "Unity": "https://www.youtube.com/watch?v=3lgM8u0qQ2M",
-            "Paradise": "https://www.youtube.com/watch?v=5VX3lAk3l4k",
-            "Routine": "https://www.youtube.com/watch?v=0Fbd2Xn4qxM",
-            "End of Time": "https://www.youtube.com/watch?v=U0uR8oFQt3U",
-            "Lost Control (feat. Sorana)": "https://www.youtube.com/watch?v=_2gn4Hl62d4",
-            "Different World (Feat. K-391)": "https://www.youtube.com/watch?v=example1"
+            "Tired": "https://www.youtube.com/watch?v=gOsM-DYAEhY",
+            "All Falls Down": "https://www.youtube.com/watch?v=2zNSgSzhBfM",
+            "The Spectre": "https://www.youtube.com/watch?v=wFM4rU6j0tI",
+            "Diamond Heart": "https://www.youtube.com/watch?v=5M5C3xKf96s",
+            "On My Way (feat. Sabrina Carpenter & Farruko)": "https://www.youtube.com/watch?v=5M5C3xKf96s",
+            "Different World": "https://www.youtube.com/watch?v=AoRrG8CJtHg",
+            "Heading Home": "https://www.youtube.com/watch?v=6K5tDeYyJQs",
+            "Lost Control": "https://www.youtube.com/watch?v=V2UuUjHBqLk",
+            "Paradise": "https://www.youtube.com/watch?v=2vf0j2P4ohU",
+            "Routine": "https://www.youtube.com/watch?v=zS9q5iFvhb0",
+            "End of Time": "https://www.youtube.com/watch?v=xy1D0T7Z0Ak",
+            "Faded (Restrung)": "https://www.youtube.com/watch?v=6UQa8g1h3KI",
+            "Lost Control (feat. Sorana)": "https://www.youtube.com/watch?v=V2UuUjHBqLk",
+            "Alone, Pt. II": "https://www.youtube.com/watch?v=HgzGwKwLmgM",
+            "Darkside (feat. Au/Ra & Tomine Harket)": "https://www.youtube.com/watch?v=bpOSxM0rNPM"
         }
     }
 
@@ -130,15 +139,9 @@ elif menu == "K-Drama 🎬":
     st.write("Select a drama or film to watch episodes:")
 
     dramas = {
-        "Crash Landing on You": {
-            f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 11)
-        },
-        "True Beauty": {
-            f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 11)
-        },
-        "Vincenzo": {
-            f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 11)
-        }
+        "Crash Landing on You": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 11)},
+        "True Beauty": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 12)},
+        "Vincenzo": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 10)}
     }
 
     drama_choice = st.selectbox("Pick a drama or film", list(dramas.keys()))
@@ -162,6 +165,8 @@ elif menu == "BTS Updates 📰":
 # ---------------- MESSAGE ----------------
 elif menu == "Message 💌":
     st.subheader("💌 A Special Message For You 💌")
+    st.markdown("💖 You are amazing, Riya! May our friendship last forever 💖")
+
     messages = [
         "You make everything brighter 💜",
         "Keep smiling 😊",
@@ -169,7 +174,59 @@ elif menu == "Message 💌":
         "You are special and appreciated 🖤",
         "May our friendship last forever 💖"
     ]
-    st.write(random.choice(messages))
-    if st.button("🎁 Reveal Surprise"):
-        st.success("You matter a lot! 💜i mean it.")
+    if st.button("🎁 Reveal Another Surprise"):
+        st.success(random.choice(messages))
         st.balloons()
+
+# ---------------- STORY WORLD ----------------
+elif menu == "Story World ✍️":
+    st.subheader("Write, play, and enjoy your stories!")
+
+    mood = st.selectbox("Pick a Mood 🎨", ["Normal", "Magical", "Happy", "Sad"])
+    mood_colors = {"Normal": "#ffffff", "Magical": "#f8f0ff", "Happy": "#fff0f8", "Sad": "#f0f0f8"}
+    st.markdown(f"<div style='background-color:{mood_colors[mood]}; padding:10px;'>", unsafe_allow_html=True)
+
+    emoji_list = ["💜", "✨", "🖤", "💖", "🌸", "🎉"]
+    st.sidebar.write("Add Emojis:")
+    for emoji in emoji_list:
+        if st.sidebar.button(emoji):
+            st.session_state.setdefault("story_text", "")
+            st.session_state.story_text += emoji
+
+    story_title = st.text_input("Story Title")
+    story_text = st.text_area("Your story text", value=st.session_state.get("story_text", ""), key="story_text")
+
+    if st.button("💾 Save Story"):
+        if story_title.strip() == "" or story_text.strip() == "":
+            st.warning("Please enter both a title and story text!")
+        else:
+            with open(os.path.join(story_folder, f"{story_title}.txt"), "w", encoding="utf-8") as f:
+                f.write(story_text)
+            st.success(f"Story '{story_title}' saved successfully! 💜")
+
+    words = len(story_text.split())
+    st.write(f"📝 Words: {words} | Estimated reading time: {max(1, words//200)} min")
+
+    if st.button("💡 Give me a story prompt"):
+        prompts = [
+            "Your character finds a magical object in the park…",
+            "A secret letter changes everything for your character…",
+            "Two best friends discover a hidden world…",
+            "Your main character meets someone mysterious in a storm…",
+            "A journey begins in an unexpected place…"
+        ]
+        st.info(random.choice(prompts))
+
+    st.subheader("Read your saved stories:")
+    stories = os.listdir(story_folder)
+    if stories:
+        story_choice = st.selectbox("Pick a story to read", stories)
+        if story_choice:
+            with open(os.path.join(story_folder, story_choice), "r", encoding="utf-8") as f:
+                content = f.read()
+            st.markdown(f"### {story_choice.replace('.txt','')}")
+            st.write(content)
+    else:
+        st.info("No stories saved yet. Go write one! ✨")
+
+st.markdown("</div>", unsafe_allow_html=True)
