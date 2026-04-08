@@ -21,7 +21,7 @@ st.markdown("""
 }
 </style>
 
-<div class="heart" style="left:10%; animation-delay:0s;">💜</div>
+<div class="heart" style="left:10%;">💜</div>
 <div class="heart" style="left:30%; animation-delay:1s;">💜</div>
 <div class="heart" style="left:50%; animation-delay:2s;">💜</div>
 <div class="heart" style="left:70%; animation-delay:3s;">💜</div>
@@ -121,7 +121,6 @@ elif menu == "Music 🎵":
             "End of Time": "https://www.youtube.com/watch?v=xy1D0T7Z0Ak",
             "Alone Pt II": "https://www.youtube.com/watch?v=HgzGwKwLmgM",
             "Force": "https://www.youtube.com/watch?v=NLZRYQMLDW4",
-            "Spectre Remix": "https://www.youtube.com/watch?v=wJnBTPUQS5A",
             "Sky": "https://www.youtube.com/watch?v=QpYk2Q9tR9M",
             "Unity": "https://www.youtube.com/watch?v=E3x_dLVTEuA"
         }
@@ -130,40 +129,6 @@ elif menu == "Music 🎵":
     artist = st.selectbox("Pick an artist", list(music_library.keys()))
     for song, link in music_library[artist].items():
         st.markdown(f"[{song}]({link})")
-
-# ---------------- K-DRAMA ----------------
-elif menu == "K-Drama 🎬":
-    st.subheader("🍿 K-Drama Zone 💜")
-
-    dramas = {
-        "Crash Landing on You": {f"Episode {i}": "https://www.youtube.com/watch?v=3Z_IVT3C9Tk" for i in range(1, 11)},
-        "True Beauty": {f"Episode {i}": "https://www.youtube.com/watch?v=r2qmyvCX2RQ" for i in range(1, 12)},
-        "Vincenzo": {f"Episode {i}": "https://www.youtube.com/watch?v=pVleYCGp-qY" for i in range(1, 10)}
-    }
-
-    drama = st.selectbox("Pick a drama", list(dramas.keys()))
-    for ep, link in dramas[drama].items():
-        st.markdown(f"[{ep}]({link})")
-
-# ---------------- BTS UPDATES ----------------
-elif menu == "BTS Updates 📰":
-    st.subheader("📰 BTS Updates 💜")
-    updates = [
-        "BTS still trending worldwide 🌍",
-        "ARMY remains one of the strongest fandoms 💜",
-        "Members continue solo success 🎤",
-        "New music always breaks records 🚀"
-    ]
-    for u in updates:
-        st.write("💜", u)
-
-# ---------------- MESSAGE ----------------
-elif menu == "Message 💌":
-    st.subheader("💌 Special Message 💌")
-    st.write("You are amazing, Riya 💜")
-    if st.button("🎁 Surprise"):
-        st.success("May our friendship last forever 💖")
-        st.balloons()
 
 # ---------------- STORY WORLD ----------------
 elif menu == "Story World ✍️":
@@ -178,18 +143,38 @@ elif menu == "Story World ✍️":
         st.success("Saved 💜")
 
     def generate_comic(story):
-        lines = story.split(".")
+        lines = [l.strip() for l in story.split(".") if l.strip()]
         imgs = []
-        for line in lines:
-            img = Image.new("RGB", (600,400), color=random.choice(["pink","lavender","lightblue"]))
+
+        for i, line in enumerate(lines):
+            img = Image.new("RGB", (600,400), color="#f8c8dc")
             draw = ImageDraw.Draw(img)
-            draw.text((20,150), line[:60], fill="black")
+
+            try:
+                font = ImageFont.truetype("arial.ttf", 24)
+            except:
+                font = ImageFont.load_default()
+
+            # speech bubble
+            draw.rectangle([50,80,550,250], fill="white", outline="black", width=3)
+
+            # wrap text
+            wrapped = "\n".join([line[i:i+30] for i in range(0,len(line),30)])
+
+            draw.text((70,100), wrapped, fill="black", font=font)
+
+            # panel title
+            draw.text((20,20), f"Panel {i+1}", fill="black", font=font)
+
             imgs.append(img)
+
         return imgs
 
     if st.button("🎨 Generate Comic"):
         imgs = generate_comic(story_text)
-        st.image(imgs)
+
+        for i, img in enumerate(imgs):
+            st.image(img, caption=f"Panel {i+1}")
 
         buf = BytesIO()
         imgs[0].save(buf, format="PDF", save_all=True, append_images=imgs[1:])
