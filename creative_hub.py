@@ -29,14 +29,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("<h2 style='text-align:center; color:#d8b4ff;'>Welcome, Riya Smiley! 💜</h2>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align:center; color:#000000;'>May our friendship last forever 💖</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center;'>May our friendship last forever 💖</h3>", unsafe_allow_html=True)
 
 # ---------------- STORY FOLDER ----------------
 story_folder = "riya_stories"
 if not os.path.exists(story_folder):
     os.makedirs(story_folder)
 
-# ---------------- SIDEBAR MENU ----------------
+# ---------------- SIDEBAR ----------------
 menu = st.sidebar.radio("✨ Explore", [
     "Home",
     "Music 🎵",
@@ -57,82 +57,140 @@ if menu == "Home":
 # ---------------- MUSIC ----------------
 elif menu == "Music 🎵":
     st.subheader("🎧 Music Zone 💜")
-    st.write("Select an artist and enjoy your favorite songs!")
 
-    # 20 songs per artist
     music_library = {
-        "BTS": {f"Song {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 21)},
-        "Blackpink": {f"Song {i}": f"https://www.youtube.com/watch?v=example{i+100}" for i in range(1, 21)},
-        "Alan Walker": {f"Song {i}": f"https://www.youtube.com/watch?v=example{i+200}" for i in range(1, 21)}
+        "BTS": {
+            "Dynamite": "https://www.youtube.com/watch?v=gdZLi9oWNZg",
+            "Butter": "https://www.youtube.com/watch?v=WMweEpGlu_U",
+            "Permission to Dance": "https://www.youtube.com/watch?v=CuklIb9d3fI",
+            "Boy With Luv": "https://www.youtube.com/watch?v=XsX3ATc3FbA",
+            "Fake Love": "https://www.youtube.com/watch?v=7C2z4GqqS5E",
+            "DNA": "https://www.youtube.com/watch?v=MBdVXkSdhwU",
+            "Idol": "https://www.youtube.com/watch?v=pBuZEGYXA6E",
+            "Fire": "https://www.youtube.com/watch?v=ALj5MKjy2BU",
+            "Dope": "https://www.youtube.com/watch?v=B5hVxkGG32s",
+            "Spring Day": "https://www.youtube.com/watch?v=xEeFrLSkMm8",
+            "Black Swan": "https://www.youtube.com/watch?v=0lapF4DQPKQ",
+            "Mic Drop": "https://www.youtube.com/watch?v=kTlv5_Bs8aw",
+            "Save Me": "https://www.youtube.com/watch?v=GZjt_sA2eso",
+            "Run": "https://www.youtube.com/watch?v=wKysONrSmew",
+            "I Need U": "https://www.youtube.com/watch?v=nmjdaBaZe8Y",
+            "Not Today": "https://www.youtube.com/watch?v=9DwzBICPhdM",
+            "On": "https://www.youtube.com/watch?v=gwMa6gpoE9I",
+            "Life Goes On": "https://www.youtube.com/watch?v=-5q5mZbe3V8",
+            "Yet To Come": "https://www.youtube.com/watch?v=kXpOEzNZ8hQ",
+            "Anpanman": "https://www.youtube.com/watch?v=8SbUC-UaAxE"
+        },
+        "Blackpink": {
+            "How You Like That": "https://www.youtube.com/watch?v=ioNng23DkIM",
+            "Kill This Love": "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
+            "Ddu-Du Ddu-Du": "https://www.youtube.com/watch?v=IHNzOHi8sJs",
+            "Boombayah": "https://www.youtube.com/watch?v=bwmSjveL3Lc",
+            "Lovesick Girls": "https://www.youtube.com/watch?v=dyRsYk0LyA8",
+            "Pink Venom": "https://www.youtube.com/watch?v=gQlMMD8auMs",
+            "Ice Cream": "https://www.youtube.com/watch?v=vRXZj0DzXIA",
+            "Pretty Savage": "https://www.youtube.com/watch?v=9Jw9RrMZrj8",
+            "Forever Young": "https://www.youtube.com/watch?v=7PrxONon7jg",
+            "Whistle": "https://www.youtube.com/watch?v=dISNgvVpWlo",
+            "Playing With Fire": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
+            "Stay": "https://www.youtube.com/watch?v=FzVR_fymZw4",
+            "As If It's Your Last": "https://www.youtube.com/watch?v=Amq-qlqbjYA",
+            "You Never Know": "https://www.youtube.com/watch?v=4Kk_iaaHd_Y",
+            "Love To Hate Me": "https://www.youtube.com/watch?v=wlzGXcTzdzU",
+            "Bet You Wanna": "https://www.youtube.com/watch?v=gXBdvSj9F2I",
+            "See U Later": "https://www.youtube.com/watch?v=1o7h6qV-3XU",
+            "Hope Not": "https://www.youtube.com/watch?v=l6zMnMMzsss",
+            "Really": "https://www.youtube.com/watch?v=He322O1JWgU",
+            "Kick It": "https://www.youtube.com/watch?v=sYUlykDe4as"
+        },
+        "Alan Walker": {
+            "Faded": "https://www.youtube.com/watch?v=60ItHLz5WEA",
+            "Alone": "https://www.youtube.com/watch?v=1-xGerv5FOk",
+            "The Spectre": "https://www.youtube.com/watch?v=wJnBTPUQS5A",
+            "On My Way": "https://www.youtube.com/watch?v=x6tK2S3t3Kw",
+            "Darkside": "https://www.youtube.com/watch?v=bpOSxM0rNPM",
+            "Sing Me To Sleep": "https://www.youtube.com/watch?v=2i2khp_npdE",
+            "Tired": "https://www.youtube.com/watch?v=gOsM-DYAEhY",
+            "All Falls Down": "https://www.youtube.com/watch?v=2zNSgSzhBfM",
+            "Diamond Heart": "https://www.youtube.com/watch?v=5M5C3xKf96s",
+            "Different World": "https://www.youtube.com/watch?v=AoRrG8CJtHg",
+            "Heading Home": "https://www.youtube.com/watch?v=6K5tDeYyJQs",
+            "Lost Control": "https://www.youtube.com/watch?v=V2UuUjHBqLk",
+            "Paradise": "https://www.youtube.com/watch?v=2vf0j2P4ohU",
+            "Routine": "https://www.youtube.com/watch?v=zS9q5iFvhb0",
+            "End of Time": "https://www.youtube.com/watch?v=xy1D0T7Z0Ak",
+            "Alone Pt II": "https://www.youtube.com/watch?v=HgzGwKwLmgM",
+            "Force": "https://www.youtube.com/watch?v=NLZRYQMLDW4",
+            "Spectre Remix": "https://www.youtube.com/watch?v=wJnBTPUQS5A",
+            "Sky": "https://www.youtube.com/watch?v=QpYk2Q9tR9M",
+            "Unity": "https://www.youtube.com/watch?v=E3x_dLVTEuA"
+        }
     }
 
     artist = st.selectbox("Pick an artist", list(music_library.keys()))
-    if artist:
-        st.write(f"💜 Songs by {artist}:")
-        for song, link in music_library[artist].items():
-            st.markdown(f"[{song}]({link})")
+    for song, link in music_library[artist].items():
+        st.markdown(f"[{song}]({link})")
 
 # ---------------- K-DRAMA ----------------
 elif menu == "K-Drama 🎬":
-    st.subheader("🍿 K-Drama / Films 💜")
-    st.write("Select a drama or film to watch episodes:")
+    st.subheader("🍿 K-Drama Zone 💜")
 
     dramas = {
-        "Crash Landing on You": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 11)},
-        "True Beauty": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i+10}" for i in range(1, 12)},
-        "Vincenzo": {f"Episode {i}": f"https://www.youtube.com/watch?v=example{i+22}" for i in range(1, 10)}
+        "Crash Landing on You": {f"Episode {i}": "https://www.youtube.com/watch?v=3Z_IVT3C9Tk" for i in range(1, 11)},
+        "True Beauty": {f"Episode {i}": "https://www.youtube.com/watch?v=r2qmyvCX2RQ" for i in range(1, 12)},
+        "Vincenzo": {f"Episode {i}": "https://www.youtube.com/watch?v=pVleYCGp-qY" for i in range(1, 10)}
     }
 
-    drama_choice = st.selectbox("Pick a drama or film", list(dramas.keys()))
-    if drama_choice:
-        st.write(f"💜 Episodes for {drama_choice}:")
-        for ep_name, ep_link in dramas[drama_choice].items():
-            st.markdown(f"[{ep_name}]({ep_link})")
+    drama = st.selectbox("Pick a drama", list(dramas.keys()))
+    for ep, link in dramas[drama].items():
+        st.markdown(f"[{ep}]({link})")
 
 # ---------------- BTS UPDATES ----------------
 elif menu == "BTS Updates 📰":
-    st.subheader("📰 Trending BTS Updates 💜")
+    st.subheader("📰 BTS Updates 💜")
     updates = [
-        "BTS is trending worldwide with their latest single 'Yet to Come'!",
-        "BTS announces new tour dates!",
-        "BTS hits record views on Butter!",
-        "RM, Jin, Suga, J‑Hope, Jimin, V, Jungkook trending worldwide!"
+        "BTS still trending worldwide 🌍",
+        "ARMY remains one of the strongest fandoms 💜",
+        "Members continue solo success 🎤",
+        "New music always breaks records 🚀"
     ]
-    for update in updates:
-        st.write(f"💜 {update}")
+    for u in updates:
+        st.write("💜", u)
 
 # ---------------- MESSAGE ----------------
 elif menu == "Message 💌":
-    st.subheader("💌 A Special Message For You 💌")
-    st.markdown("💖 You are amazing, Riya! May our friendship last forever 💖")
-
-    messages = [
-        "You make everything brighter 💜",
-        "Keep smiling 😊",
-        "This space is yours ✨",
-        "You are special and appreciated 🖤",
-        "May our friendship last forever 💖"
-    ]
-    if st.button("🎁 Reveal Another Surprise"):
-        st.success(random.choice(messages))
+    st.subheader("💌 Special Message 💌")
+    st.write("You are amazing, Riya 💜")
+    if st.button("🎁 Surprise"):
+        st.success("May our friendship last forever 💖")
         st.balloons()
 
-# ---------------- STORY WORLD + COMIC ----------------
+# ---------------- STORY WORLD ----------------
 elif menu == "Story World ✍️":
-    st.subheader("Write, play, and enjoy your stories!")
+    st.subheader("Create your story 💜")
 
-    mood = st.selectbox("Pick a Mood 🎨", ["Normal", "Magical", "Happy", "Sad"])
-    mood_colors = {"Normal": "#ffffff", "Magical": "#f8f0ff", "Happy": "#fff0f8", "Sad": "#f0f0f8"}
-    st.markdown(f"<div style='background-color:{mood_colors[mood]}; padding:10px;'>", unsafe_allow_html=True)
+    story_title = st.text_input("Title")
+    story_text = st.text_area("Write your story")
 
-    emoji_list = ["💜", "✨", "🖤", "💖", "🌸", "🎉"]
-    st.sidebar.write("Add Emojis:")
-    for emoji in emoji_list:
-        if st.sidebar.button(emoji):
-            st.session_state.setdefault("story_text", "")
-            st.session_state.story_text += emoji
+    if st.button("💾 Save"):
+        with open(os.path.join(story_folder, story_title + ".txt"), "w", encoding="utf-8") as f:
+            f.write(story_text)
+        st.success("Saved 💜")
 
-    story_title = st.text_input("Story Title")
-    story_text = st.text_area("Your story text", value=st.session_state.get("story_text", ""), key="story_text")
+    def generate_comic(story):
+        lines = story.split(".")
+        imgs = []
+        for line in lines:
+            img = Image.new("RGB", (600,400), color=random.choice(["pink","lavender","lightblue"]))
+            draw = ImageDraw.Draw(img)
+            draw.text((20,150), line[:60], fill="black")
+            imgs.append(img)
+        return imgs
 
-    if st.button("💾
+    if st.button("🎨 Generate Comic"):
+        imgs = generate_comic(story_text)
+        st.image(imgs)
+
+        buf = BytesIO()
+        imgs[0].save(buf, format="PDF", save_all=True, append_images=imgs[1:])
+        st.download_button("📥 Download Comic", buf.getvalue(), file_name="comic.pdf")
