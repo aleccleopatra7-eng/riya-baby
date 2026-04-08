@@ -59,6 +59,7 @@ elif menu == "Music 🎵":
     st.subheader("🎧 Music Zone 💜")
     st.write("Select an artist and enjoy your favorite songs!")
 
+    # 20 songs per artist
     music_library = {
         "BTS": {f"Song {i}": f"https://www.youtube.com/watch?v=example{i}" for i in range(1, 21)},
         "Blackpink": {f"Song {i}": f"https://www.youtube.com/watch?v=example{i+100}" for i in range(1, 21)},
@@ -134,73 +135,4 @@ elif menu == "Story World ✍️":
     story_title = st.text_input("Story Title")
     story_text = st.text_area("Your story text", value=st.session_state.get("story_text", ""), key="story_text")
 
-    if st.button("💾 Save Story"):
-        if story_title.strip() == "" or story_text.strip() == "":
-            st.warning("Please enter both a title and story text!")
-        else:
-            base_path = os.path.join(story_folder, story_title)
-            file_path = base_path + ".txt"
-            counter = 1
-            while os.path.exists(file_path):
-                file_path = f"{base_path}_{counter}.txt"
-                counter += 1
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(story_text)
-            st.success(f"Story '{story_title}' saved successfully! 💜")
-
-    words = len(story_text.split())
-    st.write(f"📝 Words: {words} | Estimated reading time: {max(1, words//200)} min")
-
-    if st.button("💡 Give me a story prompt"):
-        prompts = [
-            "Your character finds a magical object in the park…",
-            "A secret letter changes everything for your character…",
-            "Two best friends discover a hidden world…",
-            "Your main character meets someone mysterious in a storm…",
-            "A journey begins in an unexpected place…"
-        ]
-        st.info(random.choice(prompts))
-
-    st.subheader("Read your saved stories:")
-    stories = os.listdir(story_folder)
-    if stories:
-        story_choice = st.selectbox("Pick a story to read", stories)
-        if story_choice:
-            with open(os.path.join(story_folder, story_choice), "r", encoding="utf-8") as f:
-                content = f.read()
-            st.markdown(f"### {story_choice.replace('.txt','')}")
-            st.write(content)
-    else:
-        st.info("No stories saved yet. Go write one! ✨")
-
-    # --- COMIC GENERATOR ---
-    st.subheader("🎨 Turn Your Story Into a Comic with Visuals")
-
-    if story_text.strip() != "":
-        def generate_comic_images(story):
-            lines = [line.strip() for line in story.split(".") if line.strip()]
-            images = []
-            for i, line in enumerate(lines):
-                img = Image.new('RGB', (600, 400), color=random.choice(["#f8f0ff", "#fff0f8", "#f0f0f8", "#ffffff"]))
-                draw = ImageDraw.Draw(img)
-                font = ImageFont.load_default()
-                draw.text((10, 10), f"Panel {i+1}", fill="black", font=font)
-                draw.text((10, 50), line, fill="black", font=font)
-                draw.text((10, 300), random.choice(["💜","✨","🖤","💖","🌸","🎉"]), fill="purple", font=font)
-                images.append(img)
-            return images
-
-        if st.button("✨ Generate Comic Images"):
-            comic_images = generate_comic_images(story_text)
-            st.markdown("### 🖼️ Your Comic Panels:")
-            for idx, img in enumerate(comic_images):
-                st.image(img, caption=f"Panel {idx+1}", use_column_width=True)
-
-            pdf_bytes = BytesIO()
-            comic_images[0].save(pdf_bytes, format="PDF", save_all=True, append_images=comic_images[1:])
-            pdf_bytes.seek(0)
-            st.download_button("📥 Download Comic as PDF", data=pdf_bytes, file_name=f"{story_title}.pdf", mime="application/pdf")
-    else:
-        st.info("Write a story first to turn it into a comic 💜")
-
-st.markdown("</div>", unsafe_allow_html=True)
+    if st.button("💾
